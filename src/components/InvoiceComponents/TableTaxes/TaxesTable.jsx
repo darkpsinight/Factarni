@@ -1,47 +1,65 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
-import './style.css'
 import { GlobalContext } from 'src/context/Global'
 import { getAccountDetails } from '../../../Service/Settings/apiInvoicePreferenceSettings'
 import { IoReloadCircleSharp } from 'react-icons/io5'
+import { MdError } from 'react-icons/md'
 import { CircularProgress, IconButton } from '@mui/material'
+import { createTheme } from '@material-ui/core/styles'
+import { Tooltip } from 'antd'
+import './style.css'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2196f3',
+    },
+    secondary: {
+      main: '#ff9100',
+    },
+    error: {
+      main: '#f44336',
+    },
+  },
+})
 
 const TaxesTable = () => {
-  /* const updatedData = newDataContext.map((item) => ({
-    ...item,
-    TTC: 0,
-    HT: 0,
-    totalPricePerArticle: 0,
-  })) */
-
   const { newDataContext } = useContext(GlobalContext)
 
-  const [stamp, setStamp] = useState(null)
+  const [stamp, setStamp] = useState(0)
+  console.log('stamp: ', stamp)
+
+  const [PriceDegits, setPriceDegits] = useState(null)
+  console.log('PriceDegits: ', Number(PriceDegits))
+
+  const [quantityDegits, setQuantityDegits] = useState(null)
+  console.log('quantityDegits: ', Number(quantityDegits))
+
   const [networkError, setNetworkError] = useState(false)
   console.log('networkError: ', networkError)
 
   const [loading, setLoading] = useState(false)
 
-  const loadStamp = useCallback(async () => {
+  /* Profile Settings APIs calls */
+  const loadProfileSettings = useCallback(async () => {
     setLoading(true)
     try {
       const response = await getAccountDetails()
       setStamp(response.data.company.timbre)
+      setPriceDegits(Number(response.data.company.digits).toFixed(0))
+      setQuantityDegits(Number(response.data.company.quantity_digits).toFixed(0))
+      setNetworkError(false)
     } catch (error) {
       setNetworkError(true) //Make a toast handle error
-      console.log('Error API load stamp: ', error)
+      console.log('Error API load Profile Settings: ', error)
     } finally {
       setLoading(false)
     }
   }, [])
 
   useEffect(() => {
-    loadStamp()
-  }, [loadStamp])
-
-  const totalPrice = newDataContext.reduce((total, item) => {
-    return total + (Number(item.price) - Number(item.discount)) * Number(item.quantity)
-  }, 0)
+    loadProfileSettings()
+  }, [loadProfileSettings])
 
   const sumOfVat = newDataContext.reduce((total, item) => {
     return (
@@ -51,28 +69,21 @@ const TaxesTable = () => {
   }, 0)
 
   const sumOfHT = newDataContext.reduce((total, item) => {
-    return (
-      total +
-      (Number(item.price) * Number(item.quantity) * (1 - Number(item.discount))) /
-        (1 + Number(item.vat.vat))
-    )
+    return total + Number(item.price) * Number(item.quantity) - Number(item.discount)
   }, 0)
 
   const sumOfTTC = newDataContext.reduce((total, item) => {
     return (
       total +
       (Number(item.price) * Number(item.quantity) - Number(item.discount)) *
-        (1 + Number(item.vat.vat))
+        (1 + Number(item.vat.vat)) +
+      Number(stamp)
     )
   }, 0)
 
   // toFixed(3) change to API profile get number
   return (
     <>
-      <p>
-        <b>Total Price after discount: </b>
-        {totalPrice.toFixed(3)}
-      </p>
       <div>
         <h4>Taxes:</h4>
       </div>
@@ -82,34 +93,48 @@ const TaxesTable = () => {
             <tr>
               <th className="row1">Stamp</th>
               <td className="row2" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                {stamp} DT
+                {typeof stamp === 'string'
+                  ? parseFloat(stamp).toFixed(PriceDegits)
+                  : stamp.toFixed(PriceDegits)}{' '}
+                DT
                 <IconButton
                   aria-label="update_stamp"
-                  style={{ marginTop: '-5px' }}
-                  color="primary"
+                  style={{
+                    marginTop: '-5px',
+                    color: networkError ? theme.palette.error.main : theme.palette.primary.main,
+                  }}
                   size="small"
                   disabled={loading}
-                  onClick={loadStamp}
+                  onClick={loadProfileSettings}
                 >
                   {loading ? (
                     <CircularProgress size={25} />
+                  ) : networkError ? (
+                    <Tooltip
+                      color="red"
+                      title="Failed to load Stamp data. Click again or check network"
+                    >
+                      <MdError fontSize="25px" />
+                    </Tooltip>
                   ) : (
-                    <IoReloadCircleSharp fontSize="25px" />
+                    <Tooltip title="Click to load the latest stamp data">
+                      <IoReloadCircleSharp fontSize="25px" />
+                    </Tooltip>
                   )}
                 </IconButton>
               </td>
             </tr>
             <tr>
               <th className="row3">Total HT</th>
-              <td className="row4">{sumOfHT.toFixed(3)}</td>
+              <td className="row4">{sumOfHT.toFixed(PriceDegits)}</td>
             </tr>
             <tr>
               <th className="row5">Total VAT</th>
-              <td className="row6">{sumOfVat.toFixed(3)}</td>
+              <td className="row6">{sumOfVat.toFixed(PriceDegits)}</td>
             </tr>
             <tr>
               <th className="row7">Total TTC</th>
-              <td className="row8">{sumOfTTC.toFixed(3)}</td>
+              <td className="row8">{sumOfTTC.toFixed(PriceDegits)}</td>
             </tr>
           </tbody>
         </Table>
