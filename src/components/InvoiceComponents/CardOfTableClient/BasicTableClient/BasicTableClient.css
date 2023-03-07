@@ -1,0 +1,29 @@
+.datatable-editing-demo .editable-cells-table td.p-cell-editing {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.p-dropdown-panel {
+  z-index: 1035 !important;
+}
+
+.status-0{
+  background-color: #FFCDD2;
+  font-weight: 700;
+  color: #C63737;
+  padding: 5%;
+}
+
+.status-1{
+  background-color: #C8E6C9;
+  font-weight: 700;
+  color: #256029;
+  padding: 5%;
+}
+
+.status-2{
+  background-color: #FEEDAF;
+  font-weight: 700;
+  color: #8A5340;
+  padding: 5%;
+}

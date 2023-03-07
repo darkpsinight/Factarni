@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .App {
+    transition: background-color 250ms ease-in-out;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: #d6dade;
+  }
+  
+  .dark {
+    background-color: #26272a;
+  }
+  

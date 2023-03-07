@@ -1,0 +1,17 @@
+html {
+  font-size: 14px;
+}
+
+.p-datepicker.p-component.p-connected-overlay-enter-done {
+  z-index: 1032 !important;
+}
+
+.field {
+  display: block;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+.calendar {
+  width: 100%;
+}

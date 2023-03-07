@@ -1,0 +1,11 @@
+{
+  "reactSnippets.settings.prettierEnabled": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "local-history.browser.descending": true
+}
