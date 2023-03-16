@@ -1,0 +1,13 @@
+.p-autocomplete-panel.p-component.p-connected-overlay-enter-done {
+  z-index: 1032 !important;
+}
+
+.field {
+  display: block;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+.clientAutoComplete {
+  width: 100%;
+}

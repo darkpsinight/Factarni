@@ -1,0 +1,41 @@
+.tabview-demo .tabview-header-icon span {
+  margin: 0 0.5rem;
+}
+
+.p-tabview-nav {
+    display: flex;
+  justify-content: space-evenly;
+}
+
+.tabview-demo .p-tabview p {
+  line-height: 1.5;
+  margin: 0;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-weight: normal;
+  color: #495057;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0.5em;
+  margin-bottom: 50px;
+}
+
+h5 {
+  margin: 1.5rem 0 1rem 0;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  color: inherit;
+}
+
+h5 {
+  font-size: 1.25rem;
+}

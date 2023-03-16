@@ -1,0 +1,17 @@
+.mui-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar {
+  min-height: 52px;
+  padding-right: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+  z-index: 1;
+}
+
+.editanddeletebuttons {
+  display: flex;
+  justify-content: space-around;
+}

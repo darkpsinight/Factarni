@@ -1,0 +1,11 @@
+.p-float-label {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: block;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+.disabledinputtext {
+    width: 100%;
+}

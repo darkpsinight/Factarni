@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "article": "sapien",
+    "code": 840501,
+    "price": 812153,
+    "vat": 18
+  },
+  {
+    "id": 2,
+    "article": "ultraces",
+    "code": 215237,
+    "price": 427148,
+    "vat": 48
+  },
+  {
+    "id": 3,
+    "article": "vel",
+    "code": 689201,
+    "price": 373730,
+    "vat": 54
+  },
+  {
+    "id": 4,
+    "article": "nulla",
+    "code": 970766,
+    "price": 160107,
+    "vat": 100
+  },
+  {
+    "id": 5,
+    "article": "maecenas",
+    "code": 582642,
+    "price": 181020,
+    "vat": 29
+  },
+  {
+    "id": 6,
+    "article": "sed",
+    "code": 217133,
+    "price": 519880,
+    "vat": 2
+  },
+  {
+    "id": 7,
+    "article": "curabitur",
+    "code": 76061,
+    "price": 646861,
+    "vat": 61
+  },
+  {
+    "id": 8,
+    "article": "natoque",
+    "code": 92914,
+    "price": 75013,
+    "vat": 65
+  },
+  {
+    "id": 9,
+    "article": "sit",
+    "code": 366814,
+    "price": 262906,
+    "vat": 99
+  },
+  {
+    "id": 10,
+    "article": "duis",
+    "code": 84400,
+    "price": 198192,
+    "vat": 89
+  }
+]

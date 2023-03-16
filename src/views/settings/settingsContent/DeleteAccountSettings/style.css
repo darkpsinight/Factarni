@@ -1,0 +1,10 @@
+.toast-demo button {
+  min-width: 10rem;
+}
+
+@media screen and (max-width: 960px) {
+  .toast-demo button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}

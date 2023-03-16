@@ -1,0 +1,35 @@
+/* position the unit to the right of the wrapper */
+div::after {
+  position: absolute;
+  top: 20px;
+  right: 0.5em;
+  transition: all 0.05s ease-in-out;
+  color: black;
+}
+
+/* Set the unit abbreviation for each unit class in Discount*/
+.discount::after {
+  content: '%';
+  font-weight: bold;
+}
+.discountOnTotal::after {
+  content: 'DT';
+  font-weight: bold;
+}
+
+/* Remove default border from inputs bootstrap */
+:focus {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+/* Remove arrows (up and down) from input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.rbt-close-content {
+  font-size: 0;
+}
